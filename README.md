@@ -10,16 +10,32 @@ A lightweight, browser-based logo motion design studio by ProPixel.
 - Home screen with new project, open project, and recent projects
 - New project presets: 1080×1080, 1920×1080, and 1080×1920
 - Duration and FPS settings
-- Basic project list persistence in browser storage
-- Initial PMF JSON project validation on import
+- Local project cache for guest use
+- Appwrite email/password authentication
+- Private cloud project storage in Appwrite TablesDB
+- Project sync across devices after signing in
+- Existing PMF JSON import foundation
 
-## Planned 0.1 scope
-The agreed product scope includes a multi-layer editor (image, text, shape, and effect layers), reorderable layers, a simple timeline with independent effect tracks and keyframes, combined effects, editable canvas objects, undo/redo, solid or transparent backgrounds, and export to MP4, WebM, GIF, and PNG.
+## Appwrite configuration
+The browser uses the public Appwrite project endpoint and project ID. No API key or server secret is included in this repository.
 
-These editor and rendering features are not implemented in this starter commit yet. The current editor view is a foundation placeholder.
+- Endpoint: `https://fra.cloud.appwrite.io/v1`
+- Project ID: `pixel-motion`
+- Database ID: `pixel-motion-db`
+- Table ID: `user-projects`
+
+The table has row security enabled. Each project row is created with read, update, and delete permissions for its owner only. The `owner_id` column is used for filtering, not as the security boundary; Appwrite row permissions enforce access.
 
 ## Run
-Open `index.html` in a modern browser. No build step or external API is required.
+Open the GitHub Pages site in a modern browser. The Appwrite SDK is loaded as an ES module from jsDelivr; no npm build step is required.
 
-## Project format
-The planned `.pmf` format is JSON-based and will package project metadata and assets for portability. The complete asset packaging/import workflow is not implemented yet.
+## Account and sync
+- Register or sign in to sync projects to the cloud.
+- Guest projects remain local until sign-in, then are imported into that account's cloud workspace.
+- Each signed-in account has a separate local cache on a shared browser.
+- Sign in on another device with the same account to retrieve cloud projects.
+- Email/password authentication is enabled in Appwrite.
+- Configure email delivery separately if email verification or password recovery is enabled later.
+
+## Current editor status
+The editor view is still a foundation placeholder. The agreed editing, timeline, effects, rendering and export features are not implemented in this starter foundation.

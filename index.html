@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/app.js" defer></script>
+  <script type="module" src="assets/js/app.js"></script>
 </head>
 <body>
   <div class="app-shell">
@@ -21,6 +21,8 @@
       </a>
       <div class="topbar-actions">
         <span class="version-tag">0.1.0</span>
+        <span class="cloud-status" id="cloudStatus" role="status" aria-live="polite">آماده</span>
+        <button class="icon-button" id="accountButton" type="button">ورود / ثبت‌نام</button>
         <button class="icon-button" id="languageToggle" type="button" aria-label="Change language">EN</button>
       </div>
     </header>
@@ -82,6 +84,27 @@
         <button class="secondary-button" type="button" id="cancelDialog" data-i18n="cancel">انصراف</button>
         <button class="primary-button" type="submit" data-i18n="createProject">ساخت پروژه</button>
       </div>
+    </form>
+  </dialog>
+
+  <dialog class="auth-dialog glass" id="authDialog">
+    <form id="authForm">
+      <div class="dialog-heading">
+        <div><span class="section-kicker">PROPIXEL ACCOUNT</span><h2 id="authTitle">ورود به حساب</h2></div>
+        <button class="icon-button close-button" type="button" id="closeAuthDialog" aria-label="Close">×</button>
+      </div>
+      <p class="auth-copy" id="authDescription">با حساب کاربری‌ات پروژه‌ها رو بین دستگاه‌هات همگام نگه دار.</p>
+      <div id="authNameField" hidden>
+        <label class="field-label" for="authName">نام نمایشی</label>
+        <input class="text-input" id="authName" name="name" maxlength="80" autocomplete="name">
+      </div>
+      <label class="field-label" for="authEmail" data-i18n="email">ایمیل</label>
+      <input class="text-input" id="authEmail" name="email" type="email" autocomplete="email" required>
+      <label class="field-label" for="authPassword" data-i18n="password">رمز عبور</label>
+      <input class="text-input" id="authPassword" name="password" type="password" minlength="8" autocomplete="current-password" required>
+      <p class="auth-error" id="authError" role="alert" hidden></p>
+      <button class="primary-button auth-submit" id="authSubmit" type="submit">ورود</button>
+      <p class="auth-switch"><span id="authSwitchText">حساب نداری؟</span> <button class="text-button" id="authSwitchButton" type="button">ثبت‌نام کن</button></p>
     </form>
   </dialog>
 
