@@ -94,7 +94,7 @@ function renderTemplates(){
 }
 function applyTemplate(id){
  const def=templateDefs.find(x=>x.id===id);if(!def)return;
- p.layers=def.make();p.templateId=id;p.background={type:"transparent",color:"#ffffff"};p.effects=[];p.keyframes=[];
+ p.layers=def.make();p.templateId=id;p.background={type:"transparent",color:"#ffffff"};if($("#pmBackground"))$("#pmBackground").value="transparent";p.effects=[];p.keyframes=[];
  selected=p.layers.find(x=>x.type==="text")?.id||p.layers[0]?.id||null;
  renderAll();changed();const toast=$("#pmToast");toast.textContent=t("templateDone");toast.hidden=false;clearTimeout(toast._timer);toast._timer=setTimeout(()=>toast.hidden=true,1600);
 }
