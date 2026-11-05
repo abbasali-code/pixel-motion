@@ -31,5 +31,5 @@ export function mountEditor(element,project,callbacks={}){root=element;p=project
  root.querySelectorAll("[data-effect]").forEach(i=>{i.checked=p.effects.includes(i.dataset.effect);i.onchange=()=>{p.effects=i.checked?[...new Set([...p.effects,i.dataset.effect])]:p.effects.filter(x=>x!==i.dataset.effect);draw();changed()}});
  $("#exportPMF",root).onclick=pmf;$("#exportPNG",root).onclick=png;$("#exportVideo",root).onclick=video;
  resizeHandler=()=>{if(!canvas)return;let ww=Math.min(760,Math.max(320,innerWidth-460)),hh=ww/(p.width/p.height);if(hh>480){hh=480;ww=hh*p.width/p.height}canvas.style.width=ww+"px";canvas.style.height=hh+"px"};window.addEventListener("resize",resizeHandler);
- return {destroy(){stop();window.removeEventListener("resize",resizeHandler)}}
+ return {destroy(){clearTimeout(saveTimer);onChange(p);stop();window.removeEventListener("resize",resizeHandler)}}
 }
