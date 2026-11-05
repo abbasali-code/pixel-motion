@@ -49,13 +49,15 @@
           <div><span class="section-kicker" data-i18n="yourWorkspace">فضای کاری تو</span><h2 data-i18n="recentProjects">پروژه‌های اخیر</h2></div>
           <span class="subtle-label" id="projectCount">0</span>
         </div>
-        <div class="empty-state glass" id="emptyState">
-          <div class="empty-icon">✳</div>
-          <h3 data-i18n="emptyTitle">هنوز پروژه‌ای نداری</h3>
-          <p data-i18n="emptyCopy">اولین پروژه‌ات رو بساز؛ اینجا نگهش می‌داریم تا هر وقت خواستی برگردی.</p>
-          <button class="text-button" id="emptyCreateButton" type="button" data-i18n="startFirst">ساخت اولین پروژه ←</button>
+        <div class="recent-projects-panel glass">
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon">✳</div>
+            <h3 data-i18n="emptyTitle">هنوز پروژه‌ای نداری</h3>
+            <p data-i18n="emptyCopy">اولین پروژه‌ات رو بساز؛ اینجا نگهش می‌داریم تا هر وقت خواستی برگردی.</p>
+            <button class="text-button" id="emptyCreateButton" type="button" data-i18n="startFirst">ساخت اولین پروژه ←</button>
+          </div>
+          <div class="project-grid" id="projectGrid"></div>
         </div>
-        <div class="project-grid" id="projectGrid"></div>
       </section>
     </main>
 
