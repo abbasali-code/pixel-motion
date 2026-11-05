@@ -102,7 +102,7 @@ function openDialog(){$("#projectDialog").showModal();$("#projectName").focus()}
 function closeDialog(){$("#projectDialog").close()}
 function openEditor(project){$(".app-shell").hidden=true;const root=$("#editorShell");root.hidden=false;editorApi?.destroy();editorApi=mountEditor(root,project,{onBack:goHome,onChange:saveEditorProject})}
 function goHome(){editorApi?.destroy();editorApi=null;$("#editorShell").hidden=true;$(".app-shell").hidden=false}
-async async function saveEditorProject(project){const index=projects.findIndex(item=>item.id===project.id);if(index<0)projects.unshift(project);else projects[index]=project;persist();const state=$("#pmSaveState");if(state)state.textContent="Saved locally";if(currentUser){try{await saveCloudProject(project);if(state)state.textContent="Cloud synced"}catch(error){console.warn("Cloud save failed",error);if(state)state.textContent="Saved locally · cloud offline"}}}
+async function saveEditorProject(project{const index=projects.findIndex(item=>item.id===project.id);if(index<0)projects.unshift(project);else projects[index]=project;persist();const state=$("#pmSaveState");if(state)state.textContent="Saved locally";if(currentUser){try{await saveCloudProject(project);if(state)state.textContent="Cloud synced"}catch(error){console.warn("Cloud save failed",error);if(state)state.textContent="Saved locally · cloud offline"}}}
 
 async function saveCloudProject(project){
  if(!currentUser)return;
