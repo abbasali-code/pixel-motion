@@ -133,7 +133,7 @@ async function syncCloudProjects(){
   const localOnly=projects.filter(item=>!remoteIds.has(item.id));
   merged.push(...localOnly);projects=merged;persist();
   for(const project of localOnly) await saveCloudProject(project);
-  persist();status(t("cloudSaved"),"online");
+  persist();localStorage.removeItem(GUEST_KEY);status(t("cloudSaved"),"online");
  }catch(error){
   console.error("Cloud sync failed:",error);status(t("cloudOffline"),"offline");
  }
