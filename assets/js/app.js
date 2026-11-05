@@ -1,4 +1,5 @@
 import { Client, Account, TablesDB, ID, Permission, Role, Query } from "https://sdk.appwrite.io/web/29.2.0/index.js";
+import { mountEditor } from "./editor.js";
 
 const ENDPOINT = "https://fra.cloud.appwrite.io/v1";
 const PROJECT_ID = "pixel-motion";
@@ -42,6 +43,7 @@ const legacy = localStorage.getItem("pm-projects");
 if(legacy && !localStorage.getItem(GUEST_KEY)) localStorage.setItem(GUEST_KEY,legacy);
 localStorage.removeItem("pm-projects");
 
+let editorApi=null;
 let language=localStorage.getItem("pm-language")||"fa";
 let currentUser=null;
 let authMode="login";
@@ -98,8 +100,9 @@ function openAuthDialog(mode){
 function closeAuthDialog(){$("#authDialog").close()}
 function openDialog(){$("#projectDialog").showModal();$("#projectName").focus()}
 function closeDialog(){$("#projectDialog").close()}
-function openEditor(project){$("#editorProjectName").textContent=project.name;$(".app-shell").hidden=true;$("#editorPlaceholder").hidden=false}
-function goHome(){$("#editorPlaceholder").hidden=true;$(".app-shell").hidden=false}
+function openEditor(project){$(".app-shell").hidden=true;const root=$("#editorShell");root.hidden=false;editorApi?.destroy();editorApi=mountEditor(root,project,{onBack:goHome,onChange:saveEditorProject})}
+function goHome(){editorApi?.destroy();editorApi=null;$("#editorShell").hidden=true;$(".app-shell").hidden=false}
+async function saveEditorProject(project){const index=projects.findIndex(item=>item.id===project.id);if(index<0)projects.unshift(project);else projects[index]=project;persist();const state=$("#pmSaveState");if(state)state.textContent="Saved locally";if(currentUser){try{await saveCloudProject(project);if(state)state.textContent="Cloud synced"}catch(error){console.warn("Cloud save failed",error);if(state)state.textContent="Saved locally · cloud offline"}}}
 
 async function saveCloudProject(project){
  if(!currentUser)return;
