@@ -14,3 +14,13 @@
 .auth-error{font-size:11px;line-height:1.8;color:#a33b36;background:#fff0ef;border:1px solid #f2d3d0;border-radius:10px;padding:9px 11px;margin:12px 0 0}
 .text-button:disabled,.primary-button:disabled{opacity:.55;cursor:wait}
 @media(max-width:650px){.topbar-actions{gap:6px}.cloud-status{display:none}#accountButton{max-width:112px;padding:8px;font-size:10px}.auth-dialog{padding:20px}}
+ 
+/* Keep the selected typeface consistent across every native and custom control. */
+:root{font-family:"Vazirmatn",Tahoma,sans-serif}
+*,*::before,*::after{font-family:inherit}
+button,input,select,textarea{font-family:inherit}
+.icon-button{font-family:inherit;font-size:12px;font-weight:600}
+.primary-button,.secondary-button{font-family:inherit;font-size:13px;font-weight:600}
+.text-button{font-family:inherit;font-size:12px;font-weight:600}
+.text-input{font-family:inherit;font-size:13px}
+.project-dialog,.auth-dialog{font-family:inherit}
