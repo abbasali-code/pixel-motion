@@ -184,8 +184,6 @@ $("#emptyCreateButton").addEventListener("click",openDialog);
 $("#closeDialog").addEventListener("click",closeDialog);
 $("#cancelDialog").addEventListener("click",closeDialog);
 $("#languageToggle").addEventListener("click",()=>setLanguage(language==="fa"?"en":"fa"));
-$("#backHomeButton").addEventListener("click",goHome);
-$("#backHomeFromEditor").addEventListener("click",goHome);
 $("#accountButton").addEventListener("click",()=>currentUser?signOut():openAuthDialog("login"));
 $("#closeAuthDialog").addEventListener("click",closeAuthDialog);
 $("#authSwitchButton").addEventListener("click",()=>{authMode=authMode==="login"?"signup":"login";updateAuthUI()});
