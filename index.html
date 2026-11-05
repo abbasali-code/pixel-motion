@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5faf6">
+  <meta name="description" content="Pixel Motion — ساده بساز، حرفه‌ای متحرک کن.">
+  <title>Pixel Motion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar glass">
+      <a class="brand" href="#" aria-label="Pixel Motion home">
+        <span class="brand-mark">P</span>
+        <span>Pixel <strong>Motion</strong><small>by ProPixel</small></span>
+      </a>
+      <div class="topbar-actions">
+        <span class="version-tag">0.1.0</span>
+        <button class="icon-button" id="languageToggle" type="button" aria-label="Change language">EN</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="welcome-section">
+        <div class="eyebrow"><span class="status-dot"></span><span data-i18n="workspace">استودیوی ساخت لوگوموشن</span></div>
+        <h1 data-i18n="welcomeTitle">ایده‌ات رو به حرکت دربیار.</h1>
+        <p class="welcome-copy" data-i18n="welcomeCopy">یک فضای ساده برای ساخت موشن‌های خلاقانه؛ از اولین فریم تا خروجی نهایی.</p>
+
+        <div class="home-actions">
+          <button class="primary-button" id="newProjectButton" type="button">
+            <span class="plus">＋</span><span data-i18n="newProject">پروژه جدید</span>
+          </button>
+          <button class="secondary-button" id="openProjectButton" type="button">
+            <span>↥</span><span data-i18n="openProject">بازکردن پروژه</span>
+          </button>
+          <input id="projectFileInput" type="file" accept=".pmf,application/json" hidden>
+        </div>
+      </section>
+
+      <section class="recent-section">
+        <div class="section-heading">
+          <div><span class="section-kicker" data-i18n="yourWorkspace">فضای کاری تو</span><h2 data-i18n="recentProjects">پروژه‌های اخیر</h2></div>
+          <span class="subtle-label" id="projectCount">0</span>
+        </div>
+        <div class="empty-state glass" id="emptyState">
+          <div class="empty-icon">✳</div>
+          <h3 data-i18n="emptyTitle">هنوز پروژه‌ای نداری</h3>
+          <p data-i18n="emptyCopy">اولین پروژه‌ات رو بساز؛ اینجا نگهش می‌داریم تا هر وقت خواستی برگردی.</p>
+          <button class="text-button" id="emptyCreateButton" type="button" data-i18n="startFirst">ساخت اولین پروژه ←</button>
+        </div>
+        <div class="project-grid" id="projectGrid"></div>
+      </section>
+    </main>
+
+    <footer><span>Pixel Motion</span><span data-i18n="footerNote">ساخته‌شده برای ایده‌های متحرک.</span></footer>
+  </div>
+
+  <dialog class="project-dialog glass" id="projectDialog">
+    <form id="projectForm" method="dialog">
+      <div class="dialog-heading">
+        <div><span class="section-kicker" data-i18n="startCreating">شروع طراحی</span><h2 data-i18n="newProject">پروژه جدید</h2></div>
+        <button class="icon-button close-button" type="button" id="closeDialog" aria-label="Close">×</button>
+      </div>
+      <label class="field-label" for="projectName" data-i18n="projectName">نام پروژه</label>
+      <input class="text-input" id="projectName" name="projectName" maxlength="60" placeholder="My Logo Animation" required>
+      <span class="field-label" data-i18n="canvasSize">اندازه بوم</span>
+      <div class="preset-grid">
+        <label class="preset-card"><input type="radio" name="preset" value="square" checked><span class="preset-shape square"></span><strong>1:1</strong><small>1080 × 1080</small></label>
+        <label class="preset-card"><input type="radio" name="preset" value="landscape"><span class="preset-shape landscape"></span><strong>16:9</strong><small>1920 × 1080</small></label>
+        <label class="preset-card"><input type="radio" name="preset" value="portrait"><span class="preset-shape portrait"></span><strong>9:16</strong><small>1080 × 1920</small></label>
+      </div>
+      <div class="field-row">
+        <div><label class="field-label" for="duration" data-i18n="duration">مدت (ثانیه)</label><input class="text-input" id="duration" type="number" min="1" max="300" value="10"></div>
+        <div><label class="field-label" for="fps" data-i18n="frameRate">نرخ فریم (FPS)</label><select class="text-input" id="fps"><option>24</option><option selected>30</option><option>60</option></select></div>
+      </div>
+      <div class="dialog-actions">
+        <button class="secondary-button" type="button" id="cancelDialog" data-i18n="cancel">انصراف</button>
+        <button class="primary-button" type="submit" data-i18n="createProject">ساخت پروژه</button>
+      </div>
+    </form>
+  </dialog>
+
+  <section class="editor-placeholder" id="editorPlaceholder" hidden>
+    <header class="editor-topbar glass">
+      <button class="secondary-button" id="backHomeButton" type="button">← <span data-i18n="home">خانه</span></button>
+      <strong id="editorProjectName">Untitled Project</strong>
+      <span class="version-tag">PMF</span>
+    </header>
+    <div class="editor-message glass">
+      <div class="empty-icon">✦</div>
+      <h2 data-i18n="editorBaseTitle">پروژه ساخته شد!</h2>
+      <p data-i18n="editorBaseCopy">این نقطه شروع محیط ویرایش Pixel Motion است. قابلیت‌های تدوین و انیمیشن در مراحل بعدی توسعه اضافه می‌شوند.</p>
+      <button class="secondary-button" id="backHomeFromEditor" type="button" data-i18n="backToProjects">بازگشت به پروژه‌ها</button>
+    </div>
+  </section>
+</body>
+</html>
