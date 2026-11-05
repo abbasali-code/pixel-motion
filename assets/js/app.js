@@ -1,4 +1,4 @@
-import { Client, Account, TablesDB, ID, Permission, Role, Query } from "https://cdn.jsdelivr.net/npm/appwrite@17.0.0/+esm";
+import { Client, Account, TablesDB, ID, Permission, Role, Query } from "https://sdk.appwrite.io/web/29.2.0/index.js";
 
 const ENDPOINT = "https://fra.cloud.appwrite.io/v1";
 const PROJECT_ID = "pixel-motion";
