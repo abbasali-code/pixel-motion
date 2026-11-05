@@ -83,6 +83,8 @@ function setLanguage(next){
  $("#projectName").placeholder=language==="fa"?"لوگوموشن من":"My Logo Animation";
  updateAuthUI();updateAccountButton();
 }
+window.addEventListener("pm-language-change",event=>setLanguage(event.detail==="en"?"en":"fa"));
+
 function renderProjects(){
  $("#projectCount").textContent=projects.length;
  $("#emptyState").hidden=projects.length>0;
