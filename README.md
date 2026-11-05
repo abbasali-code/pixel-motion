@@ -27,7 +27,7 @@ The browser uses the public Appwrite project endpoint and project ID. No API key
 The table has row security enabled. Each project row is created with read, update, and delete permissions for its owner only. The `owner_id` column is used for filtering, not as the security boundary; Appwrite row permissions enforce access.
 
 ## Run
-Open the GitHub Pages site in a modern browser. The Appwrite SDK is loaded as an ES module from jsDelivr; no npm build step is required.
+Open the GitHub Pages site in a modern browser. The pinned Appwrite Web SDK (29.2.0) is loaded as an ES module from the official Appwrite SDK CDN; no npm build step is required.
 
 ## Account and sync
 - Register or sign in to sync projects to the cloud.
